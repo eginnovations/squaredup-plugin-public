@@ -59,9 +59,8 @@ export async function getHistoricalData(context) {
         }
 
         let data = await response.json();
-        const dynamicKey = Object.keys(data)[0];
-        context.log.info(dynamicKey);
-        return data[dynamicKey];
+        
+        return data.data;
     } catch (error) {
         // Catch and log any errors
         context.log.error(`Error in getHistoricalData: ${error.message}`);
