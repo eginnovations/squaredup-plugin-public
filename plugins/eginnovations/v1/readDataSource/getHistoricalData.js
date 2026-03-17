@@ -13,7 +13,14 @@ export async function getHistoricalData(context) {
         rejectUnauthorized: false
     });
     if (context.dataSourceConfig.descriptor != 'Not Applicable') {
-        info = context.dataSourceConfig.descriptor;
+        if (Array.isArray(context.dataSourceConfig.descriptor)) {
+            info =
+                context.dataSourceConfig.descriptor.length > 0
+                    ? context.dataSourceConfig.descriptor.join(',') // or [0]
+                    : '';
+        } else {
+            info = context.dataSourceConfig.descriptor;
+        }
     } else {
         info = '';
     }
@@ -23,9 +30,9 @@ export async function getHistoricalData(context) {
         timeline: context.dataSourceConfig.timeline, //'1 hour',
         componentName: context.dataSourceConfig.componentName, //'172.16.8.112:7077',
         componentType: context.dataSourceConfig.componentType, //'eG Manager',
-        test: context.dataSourceConfig.test,
-        info: info, //'Network',
-        measure: context.dataSourceConfig.measure, //'Packet Loss',
+        test: context.dataSourceConfig.test, //'HTTP',
+        info: info, //'HomePage',
+        measure: context.dataSourceConfig.measure, //'web availability',
         from: 'squaredup'
     };
     context.log.info(JSON.stringify(body));
@@ -59,7 +66,7 @@ export async function getHistoricalData(context) {
         }
 
         let data = await response.json();
-        
+
         return data.data;
     } catch (error) {
         // Catch and log any errors
