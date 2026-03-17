@@ -4,6 +4,21 @@
             "name": "Alarms",
             "metadata": [
                 {
+                    "shape": [
+                        "state",
+                        {
+                            "map": {
+                                "unmonitored": [],
+                                "unknown": [],
+                                "error": ["critical"],
+                                "warning": ["major"],
+                                "success": ["minor"]
+                            }
+                        }
+                    ],
+                    "name": "healthState"
+                },
+                {
                     "name": "healthState",
                     "displayName": "Health State",
                     "shape": "string",
@@ -67,6 +82,21 @@
         {
             "name": "Alerts",
             "metadata": [
+                {
+                    "shape": [
+                        "state",
+                        {
+                            "map": {
+                                "unmonitored": [],
+                                "unknown": [],
+                                "error": ["Critical"],
+                                "warning": ["Major"],
+                                "success": ["Minor"]
+                            }
+                        }
+                    ],
+                    "name": "priority"
+                },
                 {
                     "name": "priority",
                     "displayName": "Priority",
@@ -140,6 +170,21 @@
             "name": "ComponentsState",
             "metadata": [
                 {
+                    "shape": [
+                        "state",
+                        {
+                            "map": {
+                                "unmonitored": ["Minor"],
+                                "unknown": ["Unknown"],
+                                "error": ["Critical"],
+                                "warning": ["Major"],
+                                "success": ["Normal"]
+                            }
+                        }
+                    ],
+                    "name": "priority"
+                },
+                {
                     "name": "priority",
                     "displayName": "Priority",
                     "shape": "string",
@@ -168,6 +213,21 @@
         {
             "name": "LiveMeasure",
             "metadata": [
+                {
+                    "shape": [
+                        "state",
+                        {
+                            "map": {
+                                "unmonitored": [],
+                                "unknown": ["Unknown"],
+                                "error": ["Critical"],
+                                "warning": ["Major"],
+                                "success": ["Normal"]
+                            }
+                        }
+                    ],
+                    "name": "priority"
+                },
                 {
                     "name": "priority",
                     "displayName": "Priority",
@@ -217,7 +277,7 @@
                     "shape": "string",
                     "role": "label"
                 },
-                 {
+                {
                     "name": "value",
                     "displayName": "Value",
                     "shape": "string",
@@ -302,7 +362,7 @@
         }
     },
     "dataStreams": [
-         {
+        {
             "displayName": "Components Type",
             "description": "Select the components type",
             "dataSourceName": "getComponentsByType",
@@ -390,7 +450,7 @@
                 ]
             }
         },
-         {
+        {
             "displayName": "Descriptor",
             "description": "Select the Descriptor for Historical Data",
             "dataSourceName": "getDescriptorForComponentTestHistorical",
@@ -533,7 +593,7 @@
                 }
             ]
         },
-       
+
         {
             "displayName": "Historical Data",
             "description": "Historical Data For Components",
